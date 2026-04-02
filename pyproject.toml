@@ -1,0 +1,17 @@
+[project]
+name = "droplatch"
+version = "0.1.0"
+description = "Droplatch rewritten in Python"
+readme = "README.md"
+authors = [
+    { name = "silversigv", email = "silversi@mail.gvsu.edu" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+droplatch = "droplatch:main"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
