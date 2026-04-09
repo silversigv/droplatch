@@ -1,5 +1,6 @@
 from droplatch.backends.base import BaseBackend
 
+
 class MockBackend(BaseBackend):
     """
     A fake backend that prints to the console

@@ -1,8 +1,10 @@
-from typing import Optional
-from droplatch.keybinds import Keybinds
-from droplatch.modes.base import BaseMode
 import readchar
 import time
+from typing import Optional
+from droplatch.keybinds import Keybinds
+from droplatch.motd import MOTD
+from droplatch.modes.base import BaseMode
+from droplatch.backends.mock import MockBackend
 
 
 class Cli:
@@ -18,11 +20,18 @@ class Cli:
         """
         self.__input_queue: list[str] = []
         self.__last_keystroke: int = 0
+        try:
+            from droplatch.backends.rpigpio import RPIGPIOBackend
+
+            self.__backend = RPIGPIOBackend()
+        except RuntimeError:
+            self.__backend = MockBackend()
 
     def start_interactive(self) -> None:
         """
         Starts a prompt where you can press keys to select different modes and start the game
         """
+        print("MOTD:", MOTD.random_motd())
         key: str = ""
         while key != "q":
             key = readchar.readkey()
@@ -35,9 +44,9 @@ class Cli:
             if self.is_binding(key):
                 tup: tuple = tuple(self.__input_queue)
                 if len(tup) == 1:
-                    mode: BaseMode = Keybinds.BINDS[tup[0]]()
+                    mode: BaseMode = Keybinds.BINDS[tup[0]](self.__backend)
                 else:
-                    mode: BaseMode = Keybinds.BINDS[tup]()
+                    mode: BaseMode = Keybinds.BINDS[tup](self.__backend)
                 mode.run()
                 self.__input_queue = []
 

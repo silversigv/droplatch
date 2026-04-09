@@ -2,15 +2,17 @@ from abc import abstractmethod
 from time import sleep
 from droplatch.backends.mock import MockBackend
 
+
 class InvalidIDError(ValueError):
     pass
+
 
 class BaseMode:
     """
     Extend to implement a custom dropping mode.
     """
 
-    def __init__(self, backend = MockBackend()):
+    def __init__(self, backend=MockBackend()):
         """
         Initializes the mode.
         """
@@ -32,4 +34,3 @@ class BaseMode:
         self.__backend.toggle(id)
         sleep(1)
         self.__backend.toggle(id, retract=True)
-

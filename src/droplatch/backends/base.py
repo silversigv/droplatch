@@ -1,5 +1,6 @@
 from abc import abstractmethod
 
+
 class BaseBackend:
     """
     Extend in order to create a new backend.

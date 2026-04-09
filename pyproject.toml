@@ -7,7 +7,10 @@ authors = [
     { name = "silversigv", email = "silversi@mail.gvsu.edu" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "readchar>=4.2.2",
+    "rpi-gpio>=0.7.1",
+]
 
 [project.scripts]
 droplatch = "droplatch:main"
