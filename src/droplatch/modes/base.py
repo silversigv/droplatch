@@ -34,3 +34,12 @@ class BaseMode:
         self.__backend.toggle(id)
         sleep(1)
         self.__backend.toggle(id, retract=True)
+
+
+    def toggle(self, id: int, retract: bool = False):
+        """
+        Opens and closes the latch at the specific id.
+        """
+        if id not in range(0, 9):
+            raise InvalidIDError("Release ID should be from 0-8 inclusive")
+        self.__backend.toggle(id, retract)
