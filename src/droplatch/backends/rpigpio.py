@@ -7,7 +7,7 @@ class RPIGPIOBackend(BaseBackend):
     A backend that drops breadstick
     """
 
-    PINS = [21, 23, 29, 31, 33, 35, 37, 11]
+    PINS = [31, 23, 29, 21, 33, 35, 37, 11]
 
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
@@ -15,4 +15,4 @@ class RPIGPIOBackend(BaseBackend):
             GPIO.setup(pin, GPIO.OUT, initial=GPIO.HIGH)
 
     def toggle(self, id: int, retract: bool = False):
-        GPIO.output(RPIGPIOBackend.PINS[id], not retract)
+        GPIO.output(RPIGPIOBackend.PINS[id], retract)
