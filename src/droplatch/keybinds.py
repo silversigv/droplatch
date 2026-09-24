@@ -1,3 +1,4 @@
+from droplatch.modes.andrew import AndrewMode
 from droplatch.modes.dropall import DropAllMode
 from droplatch.modes.ronan import RonanMode
 from readchar import key
@@ -18,7 +19,7 @@ class Keybinds:
         ("1"): lambda backend: RonanMode(backend),
         ("2"): lambda backend: RonanMode(backend, 0.85),
         ("3"): lambda backend: RonanMode(backend, 0.25),
-
+        ("4"): lambda backend: AndrewMode(backend),
     }
 
     def binding_exists(lis: list[str]) -> bool:
